@@ -27,8 +27,9 @@ peer.on("connection", (connected) => {
   connected.on("data", data => console.log(data))
 });
 
-peer.on("error", (error) => {                                                         // TODO: gotta handle error better
-  console.log(error);
+peer.on("error", (error) => {
+  document.getElementById("infoerror").innerHTML = `${error.type} - ${error}`;
+  console.log(error.type);
 });
 
 // ----- " Sender " -----
@@ -41,5 +42,5 @@ function onClickBtnCall() {                                                     
 // send fuck you to end
 function sendFuck() {
   // console.log(conn);                                                               
-  conn.send({peer: conn.peer, data: "fuck you", to: conn.provider._id})               // send fuck to end user
+  conn.send({from: conn.provider._id , message: "fuck you", to: conn.peer})               // send fuck to end user
 }
