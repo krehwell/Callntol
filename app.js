@@ -1,4 +1,4 @@
-// defining the getUserMedia --- src: https://github.com/twinysam/VoiceApp/blob/master/index.html
+// DEFINING THE GETUSERMEDIA --- SRC: https://github.com/twinysam/VoiceApp/blob/master/index.html
 var getUserMedia = (function () {
 	if (navigator.getUserMedia) {
 		return navigator.getUserMedia.bind(navigator)
@@ -10,7 +10,7 @@ var getUserMedia = (function () {
 		return navigator.mozGetUserMedia.bind(navigator)
 	}
 })();
-// end of difining getUserMedia
+// END OF DIFINING GETUSERMEDIA
 
 // ----- " INITIATE NEW USER " -----
 var _id = "fuck" + Math.floor(Math.random() * 1000);                                  // user id to init
@@ -21,7 +21,7 @@ const peer = new Peer(_id);                                                     
 // ----- " INIT PEER " -----
 peer.on("open", (id) => {
   _id = id;                                                                           // let the id is fetched by the server
-  document.getElementById("peerid").value = _id;                                      // put the "id" to the DOM 
+  $("#peerid").val(_id)                                                               // put the "id" to the DOM 
   console.log("peer id: " + id);
 });
 
@@ -30,7 +30,7 @@ peer.on("open", (id) => {
 peer.on("connection", (connected) => {
   let caller = connected.peer;                                                        // the guy who received take the info of caller(user) 
   console.log(caller + " are data connected");
-  document.getElementById('info').innerText = "you are connected to " + caller;       // set the guy who received DOM who is calling
+  $('#info').text("you are connected to " + caller);                                  // set the guy who received DOM who is calling
 
   if(nobodyconnected){                                                                // let the user know that the guy who received has been connected
     (async () => { try{ conn = await peer.connect(caller); nobodyconnected = false;}  // IIFE with Async
@@ -66,10 +66,10 @@ peer.on("call", call => {
 
 // any connection error debugger
 peer.on("error", (error) => {                                                         
-  document.getElementById("infoerror").innerHTML = `Error Occur - Thinking to reload the browser maybe?`;
+  $("#infoerror").html(`Error Occur - Thinking to reload the browser maybe?`)
   // clear error message in 10 sec
   setTimeout(()=>{
-    document.getElementById("infoerror").innerHTML = ``;
+    $("#infoerror").html(``);
   }, 10000);
   console.log(`${error.type} - ${error}`);
 });
@@ -79,9 +79,10 @@ function onErrorMediaCallback(){                                                
   console.log("error on navigator.getUserMedia()");
 }
 
+// calling the guy
 function onClickBtnCall() {                                                           // user calling the id of the guy
   // call the end user
-  let callerId = document.getElementById("peertocall").value;                         // get the id input form the DOM 
+  let callerId = $("#peertocall").val();                                              // get the id input form the DOM 
   conn = peer.connect(callerId);                                                      // try to connect data
 
   // ---- " calling using audio " -----
