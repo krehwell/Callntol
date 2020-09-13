@@ -31,7 +31,7 @@ peer.on("connection", (connected) => {
   connected.on("data", data => {
     console.log(data);
     let messagebuffer = $('#message-sent');
-    messagebuffer.append(`<p>${data.from}: ${data.message}</p>`)
+    messagebuffer.append(`<p id="me"><b>${data.from}:</b> ${data.message}</p>`)
   });
 });
 
@@ -56,6 +56,12 @@ peer.on("call", async call => {
         mediasource.srcObject = media;
         mediasource.play();
       });
+
+    conn.on("close", (media) => {
+      // if the guy anwer, pass his media to our dom
+      $("#info").html(`<b>You are disconnected with the guy you called :[ - Reload to make a call again`);
+    });
+
     }
     else{ return; }
   });
@@ -97,6 +103,12 @@ function onClickBtnCall() {                                                     
       mediasource.play();
     })
 
+    conn.on("close", (media)=>{
+      // if the guy anwer, pass his media to our dom
+      console.log("fuck this");
+      $('#info').html(`<b>You are disconnected with the guy you called :[ - Reload to make a call again`);
+    })
+
   }, onErrorMediaCallback)
   console.log("trying to call...");
 }
@@ -106,5 +118,5 @@ function sendFuck() {
   let data = {from: conn.provider._id , message: "fuck you", to: conn.peer}
   conn.send(data)                                                              // send fuck to end user
   let messagebuffer = $('#message-sent');
-  messagebuffer.append(`<p>${data.from}: ${data.message}</p>`)
+  messagebuffer.append(`<p id="him"><b>${data.from}:</b> ${data.message}</p>`)
 }
