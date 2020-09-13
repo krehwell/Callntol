@@ -4,7 +4,7 @@ var getUserMedia = (function () {
 		return navigator.getUserMedia.bind(navigator)
 	}
 	if (navigator.webkitGetUserMedia) {
-		return navigator.webkitGetUserMedia.bind(navigator)
+	 return navigator.webkitGetUserMedia.bind(navigator)
 	}
 	if (navigator.mozGetUserMedia) {
 		return navigator.mozGetUserMedia.bind(navigator)
@@ -12,7 +12,7 @@ var getUserMedia = (function () {
 })();
 
 // ----- " INITIATE NEW USER " -----
-var _id = "fuck" + Math.floor(Math.random() * 10);                                    // user id to init
+var _id = "fuck" + Math.floor(Math.random() * 100);                                    // user id to init
 var conn;                                                                             // the guy who will received
 var call;                                                                             
 var nobodyconnected = true;                                                           // make sure that nobody is connected to user
@@ -42,12 +42,23 @@ peer.on("connection", (connected) => {
 });
 
 peer.on("call", call => {
-  console.log("you received a call");
+  if(!confirm(`${call.peer} is calling, Answer?`)){return ;}
+  call.answer();
+
+  console.log(`${call.peer} is calling to you`)
+
+  call.on('stream', (media)=>{
+    console.log("you are stream now")
+    let mediasource = document.getElementById("audiostream");
+    mediasource.srcObject = media;
+    mediasource.play();
+  })
 })
 
-peer.on("error", (error) => {                                                         // any connection error debugger
+// any connection error debugger
+peer.on("error", (error) => {                                                         
   document.getElementById("infoerror").innerHTML = `${error.type} - ${error}`;
-  console.log(error.type);
+  console.log("fuck error: " + error.type);
 });
 
 // ----- " SENDER " -----
@@ -64,6 +75,15 @@ function onClickBtnCall() {                                                     
   getUserMedia({video: false,audio: true}, function(stream){
     conn = peer.call(callerId, stream);
     console.log("success getUserMedia");
+
+    peer.on("call", (call) => {
+      console.log("iam connecting and ready to call now");
+
+      let mediasource = document.getElementById("audiostream");
+      mediasource.srcObject = media;
+      mediasource.play();
+    });
+
   }, onErrorMediaCallback)
   console.log("trying to call...");
 }
