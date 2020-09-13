@@ -10,11 +10,11 @@ var getUserMedia = (function () {
 		return navigator.mozGetUserMedia.bind(navigator)
 	}
 })();
+// end of difining getUserMedia
 
 // ----- " INITIATE NEW USER " -----
-var _id = "fuck" + Math.floor(Math.random() * 100);                                    // user id to init
+var _id = "fuck" + Math.floor(Math.random() * 1000);                                  // user id to init
 var conn;                                                                             // the guy who will received
-var call;                                                                             
 var nobodyconnected = true;                                                           // make sure that nobody is connected to user
 const peer = new Peer(_id);                                                           // init the peer(user) to generate id
 
@@ -41,13 +41,18 @@ peer.on("connection", (connected) => {
   connected.on("data", data => console.log(data));
 });
 
+// in order to peer to received the call and passback the media to the caller
 peer.on("call", call => {
-  if(!confirm(`${call.peer} is calling, Answer?`)){return ;}
-  call.answer();
+  if(!confirm(`${call.peer} is calling, Answer?`)){return ;}                          // allow or reject the call received
+
+  getUserMedia({audio: true, video: false}, (media) => {                              // passing peer media to the caller
+    console.log("you hit someone else to pass your media");
+    call.answer(media);
+  })
 
   console.log(`${call.peer} is calling to you`)
 
-  call.on('stream', (media)=>{
+  call.on('stream', (media)=>{                                                        // passing the caller media to DOM
     console.log("you are stream now")
     let mediasource = document.getElementById("audiostream");
     mediasource.srcObject = media;
@@ -62,7 +67,7 @@ peer.on("error", (error) => {
 });
 
 // ----- " SENDER " -----
-function  onErrorMediaCallback(){                                                     // error getUserMedia() handler
+function onErrorMediaCallback(){                                                      // error getUserMedia() handler
   console.log("error on navigator.getUserMedia()");
 }
 
@@ -76,13 +81,14 @@ function onClickBtnCall() {                                                     
     conn = peer.call(callerId, stream);
     console.log("success getUserMedia");
 
-    peer.on("call", (call) => {
-      console.log("iam connecting and ready to call now");
-
+    // trying to listen for the answer of the guy intended to call
+    conn.on("stream", (media)=>{
+      // if the guy anwer, pass his media to our dom
+      console.log("you hit peer stream")
       let mediasource = document.getElementById("audiostream");
       mediasource.srcObject = media;
       mediasource.play();
-    });
+    })
 
   }, onErrorMediaCallback)
   console.log("trying to call...");
