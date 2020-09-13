@@ -38,7 +38,11 @@ peer.on("connection", (connected) => {
   }
   
   // received the data sent by the sender
-  connected.on("data", data => console.log(data));
+  connected.on("data", data => {
+    console.log(data);
+    let messagebuffer = $('#message-sent');
+    messagebuffer.append(`<p>${data.from}: ${data.message}</p>`)
+  });
 });
 
 // in order to peer to received the call and passback the media to the caller
@@ -62,8 +66,12 @@ peer.on("call", call => {
 
 // any connection error debugger
 peer.on("error", (error) => {                                                         
-  document.getElementById("infoerror").innerHTML = `${error.type} - ${error}`;
-  console.log("fuck error: " + error.type);
+  document.getElementById("infoerror").innerHTML = `Error Occur - Thinking to reload the browser maybe?`;
+  // clear error message in 10 sec
+  setTimeout(()=>{
+    document.getElementById("infoerror").innerHTML = ``;
+  }, 10000);
+  console.log(`${error.type} - ${error}`);
 });
 
 // ----- " SENDER " -----
@@ -96,6 +104,8 @@ function onClickBtnCall() {                                                     
 
 // send fuck you to end
 function sendFuck() {
-  // console.log(conn);                                                               
-  conn.send({from: conn.provider._id , message: "fuck you", to: conn.peer})               // send fuck to end user
+  let data = {from: conn.provider._id , message: "fuck you", to: conn.peer}
+  conn.send(data)                                                                      // send fuck to end user
+  let messagebuffer = $('#message-sent');
+  messagebuffer.append(`<p>${data.from}: ${data.message}</p>`)
 }
