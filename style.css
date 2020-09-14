@@ -2,6 +2,8 @@
 
 :root {
   font-family: "Roboto Slab";
+  background-color: #272d2d;
+  color: #fafafa;
 }
 
 #container {
@@ -20,14 +22,14 @@
 
 #call-container {
   grid-area: callcontainer;
-  border: 1px solid black;
   height: 100vh;
+  padding: 20px;
 }
 
 #message-container {
   grid-area: messagecontainer;
-  border: 1px solid black;
   height: 100vh;
+  padding: 20px;
 }
 
 #me {
@@ -40,5 +42,5 @@
 }
 
 #infoerror {
-  color: red;
+  color: #f8333c;
 }

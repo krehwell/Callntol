@@ -5,23 +5,30 @@
   <title>callntol</title>
   <link rel="icon" href="https://img.icons8.com/dusk/64/000000/penis.png" type="image/x-icon" />
   <link href="./style.css" rel="stylesheet" type="text/css" />
+  <link href="./styleinput.css" rel="stylesheet" type="text/css" />
+  <link href="./stylebutton.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
   <div id="container">
     <header id="header">
-      <h1>Anyone Calling You?</h1>
+      <h1>CallnTalk</h1>
     </header>
 
     <div id="call-container">
-      <div id="inputlabel">
-        <div> <label for="peerid"> Your ID: <input value="" type="text" id="peerid" readonly /> </label> </div>
-        <div> <label for="peertocall"> ID to Call: <input value="" type="text" id="peertocall" /> </label> </div>
+      <div id="input__group" field>
+        <div class="input__wrapper">
+          <label class="input__label" for="peerid">Your ID</label>
+          <input id="peerid" class="input__field" value="" type="text" readonly /> 
+        </div> 
+
+        <div class="input__wrapper">
+          <label class="input__label" for="peertocall">Peer ID to Call</label>
+          <input id="peertocall" class="input__field" placeholder="input other id" type="text" /> 
+        </div> 
       </div>
 
-      <div id="btn-group">
-        <button id="btncall" type="button" onclick="onClickBtnCall()">Call</button>
-      </div>
+      <button id="btncall" class="button" type="button" onclick="onClickBtnCall()">Call</button>
 
       <div id="info-group">
         <b> <p id="info"></p> </b>
@@ -32,13 +39,17 @@
     </div>
 
     <div id="message-container">
-      <button id="sendFuck" type="button" onclick="sendMessage('fuck you')">fuck you</button>
-      <button id="sendBullshit" type="button" onclick="sendMessage('bullshit')">bullshit</button>
-      <button id="sendAsshole" type="button" onclick="sendMessage('asshole')">asshole</button>
-      <button id="sendGay" type="button" onclick="sendMessage('gay fagooouuut')">gay fag out</button>
+      <div class="chatbutton">
+        <button class="button" id="sendFuck" type="button" onclick="sendMessage('fuck you')">fuck you</button>
+        <button class="button" id="sendBullshit" type="button" onclick="sendMessage('bullshit')">bullshit</button>
+        <button class="button" id="sendAsshole" type="button" onclick="sendMessage('asshole')">asshole</button>
+        <button class="button" id="sendGay" type="button" onclick="sendMessage('gay fagooouuut')">gay fag out</button>
+      </div> 
 
-      <input id="manualtext" type="text" value="" placeholder="type message"></input>
-      <button id="sendManualtext" type="button" onclick="sendMessage('manualtext')">send</button>
+      <div class="chatbutton">
+        <input id="manualtext" class="input__field" type="text" value="" placeholder="type message"></input>
+        <button id="sendManualtext" class="button" type="button" onclick="sendMessage('manualtext')">send</button>
+      </div> 
       <div id="message-header"><b>Messages</b></div>
 
       <div id="message-sent">
