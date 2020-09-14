@@ -1,7 +1,4 @@
 .input__group {
-  position: relative;
-  padding: 15px 0 0;
-  margin-top: 10px;
   width: 50%;
 }
 .input__field {
@@ -11,8 +8,8 @@
   border-bottom: 2px solid #1ab188;
   outline: 0;
   font-size: 1.3rem;
+  padding-bottom: 15px;
   color: #fff;
-  padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
 }
@@ -29,7 +26,6 @@
   margin-bottom: 50px;
 }
 .input__field:focus {
-  padding-bottom: 6px;
   font-weight: 700;
   border-width: 3px;
   border-image-slice: 1;
@@ -40,9 +36,4 @@
   font-size: 1rem;
   color: #da4167;
   font-weight: 700;
-}
-/* reset input */
-.input__field:required,
-.input__field:invalid {
-  box-shadow: none;
 }

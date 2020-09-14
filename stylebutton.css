@@ -3,13 +3,14 @@
   outline: none;
   border-radius: 0;
   padding: 15px;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   background: #1ab188;
   color: #fff;
   transition: all 0.5s ease;
+  margin-bottom: 10px;
 }
 
 .button:hover,
@@ -20,5 +21,11 @@
 
 .chatbutton .button {
   font-size: 1rem;
-  margin-bottom: 50px;
+}
+
+@media (max-width: 680px) {
+  /*  .chatbutton .button {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }*/
 }

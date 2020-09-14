@@ -4,6 +4,7 @@
   font-family: "Roboto Slab";
   background-color: #272d2d;
   color: #fafafa;
+  height: 100vh;
 }
 
 #container {
@@ -22,25 +23,46 @@
 
 #call-container {
   grid-area: callcontainer;
-  height: 100vh;
   padding: 20px;
 }
 
 #message-container {
   grid-area: messagecontainer;
-  height: 100vh;
   padding: 20px;
 }
 
 #me {
-  color: blue;
+  color: #255c99;
 }
 
 #him {
-  color: red;
+  color: #f8333c;
   text-align: right;
 }
 
 #infoerror {
   color: #f8333c;
+}
+
+#message-sent {
+  background-color: #040f16;
+  border: 1px solid white;
+  max-height: 400px;
+  margin-bottom: 10px;
+  height: 100%;
+}
+
+audio {
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+  border-radius: 90px;
+  transform: scale(1.05);
+}
+
+@media (max-width: 640px) {
+  #container {
+    grid-template-areas:
+      "header"
+      "callcontainer"
+      "messagecontainer";
+  }
 }
