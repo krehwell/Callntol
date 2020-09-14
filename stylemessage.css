@@ -1,0 +1,45 @@
+#message-sent {
+  display: flex;
+  overflow: auto;
+  flex-direction: column;
+  background-color: #040f16;
+  border: 1px solid white;
+  margin-bottom: 10px;
+  max-height: 350px;
+  min-height: 350px;
+}
+
+.messageme {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+/* Darker chat container */
+.messagerhim {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+/* Clear floats */
+.messageme::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.time {
+  color: #999;
+  font-size: 12px;
+}
+
+#me {
+  color: #5887ff;
+}
+
+#him {
+  color: #f8333c;
+  text-align: right;
+}

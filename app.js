@@ -20,7 +20,7 @@ peer.on("open", (id) => {
 peer.on("connection", (connected) => {
   let caller = connected.peer;                                                  // the guy who received take the info of caller(user) 
   console.log(caller + " are data connected");
-  $('#info').text("you are data connected to " + caller);                       // set the guy who received DOM who is calling
+  $('#info').text("you are data connected to " + caller + " you can chat with him now"); // set the guy who received DOM who is calling
 
   if(nobodyconnected){                                                          // let the user know that the guy who received has been connected
     (async () => { try{ conn = await peer.connect(caller); nobodyconnected = false;}  // IIFE with Async
@@ -31,7 +31,11 @@ peer.on("connection", (connected) => {
   connected.on("data", data => {
     console.log(data);
     let messagebuffer = $('#message-sent');
-    messagebuffer.append(`<p id="me"><b>${data.from}:</b> ${data.message}</p>`)
+    var d = new Date(); 
+    let hour = d.getHours() < 10 ? '0' + d.getHours() : d.getHours(); 
+    let minute = d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes();;
+    //messagebuffer.prepend(`<span class="time">${hour}:${minute}</span>|<p id="me"><b>${data.from}:</b>  ${data.message}</p>`)
+    messagebuffer.prepend(`<p id="me"><span class="time">${hour}:${minute}</span> |<b>Him:</b>  ${data.message}</p>`)
   });
 });
 
@@ -120,5 +124,9 @@ function sendMessage(message) {
   let data = {from: conn.provider._id , message, to: conn.peer}
   conn.send(data)                                                              // send fuck to end user
   let messagebuffer = $('#message-sent');
-  messagebuffer.append(`<p id="him"><b>${data.from}:</b> ${data.message}</p>`)
+  var d = new Date(); 
+  let hour = d.getHours() < 10 ? '0' + d.getHours() : d.getHours(); 
+  let minute = d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes();;
+  //messagebuffer.prepend(`<p id="him">${data.message}  <b>:${data.from}</b></p><span class="time">|${hour}:${minute}</span>`)
+  messagebuffer.prepend(`<p id="him">${data.message}  <b>:Me</b><span class="time">| ${hour}:${minute}</span></p>`)
 }

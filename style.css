@@ -3,7 +3,7 @@
 :root {
   font-family: "Roboto Slab";
   background-color: #272d2d;
-  color: #fafafa;
+  color: #fff;
   height: 100vh;
 }
 
@@ -16,6 +16,11 @@
   grid-template-columns: 50% 50%;
 }
 
+#message-container {
+  grid-area: messagecontainer;
+  padding: 20px;
+}
+
 #header {
   grid-area: header;
   text-align: center;
@@ -26,30 +31,8 @@
   padding: 20px;
 }
 
-#message-container {
-  grid-area: messagecontainer;
-  padding: 20px;
-}
-
-#me {
-  color: #255c99;
-}
-
-#him {
-  color: #f8333c;
-  text-align: right;
-}
-
 #infoerror {
   color: #f8333c;
-}
-
-#message-sent {
-  background-color: #040f16;
-  border: 1px solid white;
-  max-height: 400px;
-  margin-bottom: 10px;
-  height: 100%;
 }
 
 audio {
