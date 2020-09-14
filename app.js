@@ -73,14 +73,14 @@ peer.on("call", async call => {
 peer.on("error", (error) => {                                                         
   $("#infoerror").html(`Error Occur(<b>${error.type}</b>) - Thinking to reload the browser maybe?`)
   // clear error message in 10 sec
-  setTimeout(()=>{ $("#infoerror").html(``); }, 10000); console.log(`${error.type} - ${error}`);
+  setTimeout(()=>{ $("#infoerror").html(``); }, 30000); console.log(`${error.type} - ${error}`);
 });
 
 // ----- " SENDER " -----
 function onErrorMediaCallback(){                                                // error handler for not allowed media 
   console.log("error on navigator.getUserMedia()");
   $("#infoerror").html(`Please allow you browser to use your mic, otherwise how are you gonna communicate asshole`)
-  setTimeout(()=>{ $("#infoerror").html(``); }, 8000);                          // clear error message in 8 sec
+  setTimeout(()=>{ $("#infoerror").html(``); }, 100000);                          // clear error message in fucking sec
 }
 
 // calling the guy
