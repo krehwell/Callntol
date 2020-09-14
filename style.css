@@ -1,6 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@600&display=swap");
+
+:root {
+  font-family: "Roboto Slab";
+}
+
+#container {
+  display: grid;
+  grid-template-areas: "header" "callcontainer" "messagecontainer";
+  grid-template-areas:
+    "header header"
+    "callcontainer messagecontainer";
+  grid-template-columns: 50% 50%;
+}
+
+#header {
+  grid-area: header;
+  text-align: center;
+}
+
+#call-container {
+  grid-area: callcontainer;
+  border: 1px solid black;
+  height: 100vh;
+}
+
+#message-container {
+  grid-area: messagecontainer;
+  border: 1px solid black;
+  height: 100vh;
+}
+
 #me {
   color: blue;
 }
+
 #him {
+  color: red;
+  text-align: right;
+}
+
+#infoerror {
   color: red;
 }
