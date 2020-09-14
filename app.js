@@ -20,7 +20,7 @@ peer.on("open", (id) => {
 peer.on("connection", (connected) => {
   let caller = connected.peer;                                                  // the guy who received take the info of caller(user) 
   console.log(caller + " are data connected");
-  $('#info').text("you are connected to " + caller);                            // set the guy who received DOM who is calling
+  $('#info').text("you are data connected to " + caller);                       // set the guy who received DOM who is calling
 
   if(nobodyconnected){                                                          // let the user know that the guy who received has been connected
     (async () => { try{ conn = await peer.connect(caller); nobodyconnected = false;}  // IIFE with Async
@@ -58,7 +58,7 @@ peer.on("call", async call => {
       });
 
     conn.on("close", (media) => {
-      // if the guy anwer, pass his media to our dom
+      // if the guy disconnected, send info disconnected to DOM
       $("#info").html(`<b>You are disconnected with the guy you called :[ - Reload to make a call again`);
     });
 
@@ -77,7 +77,7 @@ peer.on("error", (error) => {
 });
 
 // ----- " SENDER " -----
-function onErrorMediaCallback(){
+function onErrorMediaCallback(){                                                // error handler for not allowed media 
   console.log("error on navigator.getUserMedia()");
   $("#infoerror").html(`Please allow you browser to use your mic, otherwise how are you gonna communicate asshole`)
   setTimeout(()=>{ $("#infoerror").html(``); }, 8000);                          // clear error message in 8 sec
@@ -96,7 +96,7 @@ function onClickBtnCall() {                                                     
 
     // trying to listen for the answer of the guy intended to call
     conn.on("stream", (media)=>{
-      // if the guy anwer, pass his media to our dom
+      // if the guy answer, pass his media to our dom
       console.log("you hit peer stream")
       let mediasource = document.getElementById("audiostream");
       mediasource.srcObject = media;
@@ -114,8 +114,10 @@ function onClickBtnCall() {                                                     
 }
 
 // send fuck you to end
-function sendFuck() {
-  let data = {from: conn.provider._id , message: "fuck you", to: conn.peer}
+function sendMessage(message) {
+  // send message via input box, if empty then dont send
+  if(message === "manualtext"){message = $("#manualtext").val(); $("#manualtext").val('');} if(!message.match(/[^\s]/)){return}
+  let data = {from: conn.provider._id , message, to: conn.peer}
   conn.send(data)                                                              // send fuck to end user
   let messagebuffer = $('#message-sent');
   messagebuffer.append(`<p id="him"><b>${data.from}:</b> ${data.message}</p>`)
