@@ -3,7 +3,7 @@ var getUserMedia = navigator.getUserMedia
 // END OF DIFINING GETUSERMEDIA
 
 // ----- " INITIATE NEW USER " -----
-var _id = "fuck" + Math.floor(Math.random() * 1000);                            // user id to init
+var _id = "yuza" + Math.floor(Math.random() * 1000);                            // user id to init
 var conn;                                                                       // the guy who will received
 var nobodyconnected = true;                                                     // make sure that nobody is connected to user
 const peer = new Peer(_id);                                                     // init the peer(user) to generate id
