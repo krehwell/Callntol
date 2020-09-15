@@ -9,10 +9,11 @@
 
 #container {
   display: grid;
-  grid-template-areas: "header" "callcontainer" "messagecontainer";
+  grid-template-areas: "header" "callcontainer" "messagecontainer" "footer";
   grid-template-areas:
     "header header"
-    "callcontainer messagecontainer";
+    "callcontainer messagecontainer"
+    "footer messagecontainer";
   grid-template-columns: 50% 50%;
   grid-template-rows: auto 1fr;
 }
@@ -27,6 +28,19 @@
   text-align: center;
   font-size: 20px;
   margin: -18px 0;
+}
+
+a {
+  color: white;
+}
+
+#footer {
+  font-size: 11px;
+  font-family: "Courier New";
+  background-color: transparent(10);
+  grid-area: footer;
+  text-align: left;
+  padding-left: 20px;
 }
 
 #call-container {
@@ -49,7 +63,11 @@ audio {
     grid-template-areas:
       "header"
       "callcontainer"
-      "messagecontainer";
-    grid-template-columns: 1fr;
+      "messagecontainer"
+      "footer";
+    grid-template-columns: 100%;
+  }
+
+  #message-container {
   }
 }
