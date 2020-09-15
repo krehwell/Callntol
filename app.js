@@ -3,7 +3,7 @@ var getUserMedia = navigator.getUserMedia
 // END OF DIFINING GETUSERMEDIA
 
 // ----- " INITIATE NEW USER " -----
-var _id = "fuck" + Math.floor(Math.random() * 1000);                            // user id to init
+var _id = "yuza" + Math.floor(Math.random() * 1000);                            // user id to init
 var conn;                                                                       // the guy who will received
 var nobodyconnected = true;                                                     // make sure that nobody is connected to user
 const peer = new Peer(_id);                                                     // init the peer(user) to generate id
@@ -35,7 +35,7 @@ peer.on("connection", (connected) => {
     let hour = d.getHours() < 10 ? '0' + d.getHours() : d.getHours(); 
     let minute = d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes();;
     //messagebuffer.prepend(`<span class="time">${hour}:${minute}</span>|<p id="me"><b>${data.from}:</b>  ${data.message}</p>`)
-    messagebuffer.prepend(`<p id="me"><span class="time">${hour}:${minute}</span> |<b>Him:</b>  ${data.message}</p>`)
+    messagebuffer.prepend(`<p id="him"><span class="time">${hour}:${minute}| </span><b>Him:</b>  ${data.message}</p>`)
   });
 });
 
@@ -46,6 +46,7 @@ peer.on("call", async call => {
     title: `${call.peer} is calling you`,
     showDenyButton: true, confirmButtonText: `Pick Up`, denyButtonText: `Decline`,
     customClass: { confirmButton: "order-1", denyButton: "order-3", },
+    confirmButtonColor: '#179b77', denyButtonColor: '#f8333c', background:'#fff'
   }).then((result) => {
     if (result.isConfirmed) {                                                   // if pick up then get the media then send and bind to DOM
       getUserMedia({ audio: true, video: false }, (media) => {
@@ -84,7 +85,7 @@ peer.on("error", (error) => {
 function onErrorMediaCallback(){                                                // error handler for not allowed media 
   console.log("error on navigator.getUserMedia()");
   $("#infoerror").html(`Please allow you browser to use your mic, otherwise how are you gonna communicate asshole`)
-  setTimeout(()=>{ $("#infoerror").html(``); }, 100000);                          // clear error message in fucking sec
+  setTimeout(()=>{ $("#infoerror").html(``); }, 100000);                        // clear error message in fucking sec
 }
 
 // calling the guy
@@ -128,5 +129,12 @@ function sendMessage(message) {
   let hour = d.getHours() < 10 ? '0' + d.getHours() : d.getHours(); 
   let minute = d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes();;
   //messagebuffer.prepend(`<p id="him">${data.message}  <b>:${data.from}</b></p><span class="time">|${hour}:${minute}</span>`)
-  messagebuffer.prepend(`<p id="him">${data.message}  <b>:Me</b><span class="time">| ${hour}:${minute}</span></p>`)
+  messagebuffer.prepend(`<p id="me">${data.message}  <b>:Me</b><span class="time">| ${hour}:${minute}</span></p>`)
 }
+
+// make on enter on manual text 
+$('#manualtext').on('keyup', function (e) {
+   if (e.key === 'Enter' || e.keyCode === 13) {
+     sendMessage("manualtext");
+  }
+});
