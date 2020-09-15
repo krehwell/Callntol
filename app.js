@@ -35,7 +35,7 @@ peer.on("connection", (connected) => {
     let hour = d.getHours() < 10 ? '0' + d.getHours() : d.getHours(); 
     let minute = d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes();;
     //messagebuffer.prepend(`<span class="time">${hour}:${minute}</span>|<p id="me"><b>${data.from}:</b>  ${data.message}</p>`)
-    messagebuffer.prepend(`<p id="him"><span class="time">${hour}:${minute}</span> |<b>Him:</b>  ${data.message}</p>`)
+    messagebuffer.prepend(`<p id="him"><span class="time">${hour}:${minute}| </span><b>Him:</b>  ${data.message}</p>`)
   });
 });
 

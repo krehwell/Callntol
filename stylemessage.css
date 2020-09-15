@@ -5,8 +5,8 @@
   background-color: #040f16;
   border: 1px solid white;
   margin-bottom: 10px;
-  max-height: 380px;
-  min-height: 380px;
+  max-height: 390px;
+  min-height: 390px;
 }
 
 .time {
@@ -15,10 +15,10 @@
 }
 
 #me {
-  color: #5887ff;
+  color: #f8333c;
+  text-align: right;
 }
 
 #him {
-  color: #f8333c;
-  text-align: right;
+  color: #5887ff;
 }

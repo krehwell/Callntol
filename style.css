@@ -25,7 +25,8 @@
 #header {
   grid-area: header;
   text-align: center;
-  font-size: 16px;
+  font-size: 20px;
+  margin: -18px 0;
 }
 
 #call-container {
