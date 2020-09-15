@@ -1,5 +1,6 @@
 .input__group {
   width: 50%;
+  transition: border-color 0.2s;
 }
 .input__field {
   font-family: inherit;
