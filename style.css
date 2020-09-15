@@ -43,6 +43,10 @@ a {
   padding-left: 20px;
 }
 
+.footertext {
+  margin-bottom: -4px;
+}
+
 #call-container {
   grid-area: callcontainer;
   padding: 20px;
