@@ -4,12 +4,15 @@ Open-source project that provides web browsers and mobile applications with real
 
 # CallnTol
 
+Website: https://callntol.surge.sh/
+
 You can call, You can talk, You can chat.
 
 ## Dependencies
 
 - Peerjs: API to allow WebRTC
 - SweetAlert2: Pop up box design
+- The rest are pure vanilla javascript
 
 ## How to Use This Repo?
 
