@@ -4,15 +4,18 @@ Open-source project that provides web browsers and mobile applications with real
 
 # CallnTol
 
-Website: https://callntol.surge.sh/
+**Website:** https://callntol.surge.sh/
 
-You can call, You can talk, You can chat.
+You can call, You can talk, You can chat. (you can even bitc\*\* easyly now)
+
+![web looks](./images/fullscreen.png)
 
 ## Dependencies
 
 - Peerjs: API to allow WebRTC
 - SweetAlert2: Pop up box design
 - The rest are pure vanilla javascript
+- JQuery
 
 ## How to Use This Repo?
 
@@ -29,3 +32,4 @@ Clone the repo and run `php -S localhost:8888`
 
 1. You can curse instantly with the curse button provided so that you don't have to type anymore.
 2. You still not satisfied with the curse button messages? you can write you custom messages too to bullshit to the other peer.
+3. Responsive Yo.
