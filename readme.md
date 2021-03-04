@@ -4,9 +4,9 @@ Open-source project that provides web browsers and mobile applications with real
 
 # CallnTol
 
-**Website:** https://callntol.surge.sh/
+**Website:** https://callntol.vercel.app/
 
-You can call, You can talk, You can chat. (you can even bitc\*\* easyly now)
+You can call, You can talk, You can chat, You can Video Call now. ~~(you can even bitc\*\* easyly now)~~
 
 ![web looks](./images/fullscreen.png)
 
@@ -32,4 +32,5 @@ Clone the repo and run `php -S localhost:8888`
 
 1. You can curse instantly with the curse button provided so that you don't have to type anymore.
 2. You still not satisfied with the curse button messages? you can write you custom messages too to bullshit to the other peer.
-3. Responsive Yo.
+3. Videocall support.
+4. Responsive Yo.
