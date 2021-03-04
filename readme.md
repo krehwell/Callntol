@@ -8,7 +8,7 @@ Open-source project that provides web browsers and mobile applications with real
 
 You can call, You can talk, You can chat, You can Video Call now. ~~(you can even bitc\*\* easyly now)~~
 
-![web looks](./images/fullscreen.png)
+![web looks](./images/screenshot.png)
 
 ## Dependencies
 
